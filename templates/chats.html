@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<style> 
+
+      .main {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+        text-align: center;
+      }
+</style>
+
+    <container class="main">
+    <h1> Chats History </h1>
+    <br>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">First User</th>
+            <th scope="col">Second User</th>
+            <th scope="col">Status</th>
+            <th scope="col">Change Status</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for chat_obj in chats %}
+            <tr>
+            {% if username == chat_obj.first_user.username%}
+                <td>{{chat_obj.first_user.username}}</td>
+                <td>{{chat_obj.second_user.username}}</td>
+            {% else %}
+                <td>{{chat_obj.second_user.username}}</td>
+                <td>{{chat_obj.first_user.username}}</td>
+            {% endif %}
+
+            {% if chat_obj.is_chat_active == True %}
+                <td>Active</td>
+            {% else %}
+                <td>Not Active</td>
+            {% endif %}
+                <td>
+                    <form method="POST" action="{% url 'change_status'%}" class="form-center my-2 my-lg-0">
+                        {% csrf_token %}
+                        
+                        <input hidden name='username' id='username' type="text" value={{username}}></input>
+                        <input hidden name='fu_uuid' id='fu_uuid' type="text" value={{chat_obj.first_user.id}}></input>
+                        <input hidden name='su_uuid' id='su_uuid' type="text" value={{chat_obj.second_user.id}}></input>
+                        
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Change Status</button>
+                    </form>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        </table>
+    </container>
+
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style> 
+
+      .main {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+        text-align: center;
+      }
+</style>
+
+    <container class="main">
+        <h1> Chats History between <b>{{first_user.username}}</b> and <b>{{second_user.username}}</b> </h1>
+        <br>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Sender</th>
+            <th scope="col">Receiver</th>
+            <th scope="col">Date</th>
+            <th scope="col">Message</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for msg in msgs %}
+            <tr>
+                <td>{{msg.sender.username}}</td>
+                <td>{{msg.receiver.username}}</td>
+                <td>{{msg.msg_time}}</td>
+                <td>{{msg.msg}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        </table>
+    </container>
+
+
+
+{% endblock %}

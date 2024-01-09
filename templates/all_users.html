@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style> 
+      .main {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+        text-align: center;
+      }
+      
+</style>    
+<container class="main">
+    <h1> You can start a conversation with any of the users</h1>
+    <br>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Username</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for user in users %}
+            <tr>
+            <td>{{user.username}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+</container>
+
+
+
+{% endblock %}

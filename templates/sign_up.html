@@ -1,0 +1,61 @@
+{% extends "anonymous_base.html" %}
+
+{% block content %}
+    <style>
+
+      .form-sign_up {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+      }
+      .form-sign_up .checkbox {
+        font-weight: 400;
+      }
+      .form-sign_up .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .form-sign_up .form-control:focus {
+        z-index: 2;
+      }
+      .form-sign_up input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      .form-sign_up input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    </style>
+  <container>
+    <br>
+    <div class="row">
+
+    <form action={% url 'add_user' %}  method="post" class="form-sign_up">
+    {% csrf_token %}  
+    <h1 class="h3 mb-3 font-weight-normal">Please Sign-Up</h1>
+    <br>
+    <label for="full_name" class="sr-only">Full Name</label>
+    <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Full Name" required autofocus>
+
+    <label for="username" class="sr-only">Username</label>
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+
+    <label for="email" class="sr-only">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+    
+  </form>
+  </div>
+</container>
+{% endblock %}
